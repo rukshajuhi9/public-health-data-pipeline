@@ -1,0 +1,14 @@
+services:
+  pg:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: ph
+      POSTGRES_PASSWORD: ph
+      POSTGRES_DB: public_health
+    ports:
+      - "5433:5432"   # use 5433 on your Mac to avoid conflicts
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ph"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
