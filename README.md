@@ -56,7 +56,7 @@ This project demonstrates a **real-world data engineering workflow** — from AP
                       |
                       v
            +----------------------+
-           |  BigQuery (Optional) |
+           |      BigQuery
            +----------+-----------+
                       |
                       v
