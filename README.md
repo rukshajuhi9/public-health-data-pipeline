@@ -1,1 +1,25 @@
-# public-health-data-pipeline
+<!-- filepath: /Users/rukshajuhi/Public_health_pipeline/README.md -->
+# Public Health Pipeline
+
+Lightweight ETL pipeline that ingests CDC Socrata data, stages it in PostgreSQL, performs cleaning/validation, and optionally loads validated data to BigQuery. Includes a small Validation API and simple alerting.
+
+## Repo layout
+- orchestrator.py — pipeline orchestration and run logging
+- pipeline.py — ingestion, staging, cleaning, BigQuery load
+- validation_api.py — FastAPI service that runs data-quality checks
+- alerts.py — logging/sendgrid alert helper
+- run_pipeline.sh — helper runner (start API, wait, run orchestrator)
+- docker-compose.yml — Postgres service for local development
+- tests/ — unit/integration tests
+- .env — environment template (not committed with secrets)
+- logs/ — runtime logs and validation output
+
+## Prerequisites
+- macOS with Python 3.10+
+- Docker + docker-compose (for local Postgres)
+- Google Cloud SDK or service account JSON if using BigQuery
+- Install Python deps:
+```sh
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
