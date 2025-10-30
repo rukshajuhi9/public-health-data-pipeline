@@ -1,25 +1,50 @@
-<!-- filepath: /Users/rukshajuhi/Public_health_pipeline/README.md -->
-# Public Health Pipeline
+# 🩺 Public Health Data Pipeline
 
-Lightweight ETL pipeline that ingests CDC Socrata data, stages it in PostgreSQL, performs cleaning/validation, and optionally loads validated data to BigQuery. Includes a small Validation API and simple alerting.
+This project demonstrates the design and development of a **scalable, end-to-end ETL (Extract–Transform–Load) pipeline** for ingesting and processing public health data from the **CDC Socrata API**.  
 
-## Repo layout
-- orchestrator.py — pipeline orchestration and run logging
-- pipeline.py — ingestion, staging, cleaning, BigQuery load
-- validation_api.py — FastAPI service that runs data-quality checks
-- alerts.py — logging/sendgrid alert helper
-- run_pipeline.sh — helper runner (start API, wait, run orchestrator)
-- docker-compose.yml — Postgres service for local development
-- tests/ — unit/integration tests
-- .env — environment template (not committed with secrets)
-- logs/ — runtime logs and validation output
+The pipeline ingests raw data, stages it in **PostgreSQL**, performs **data cleaning and validation**, and optionally loads the processed data into **Google BigQuery** for downstream analytics and visualization.  
+It also exposes a **FastAPI-based validation microservice** for automated data-quality checks and supports alerting through email or logging integrations.
 
-## Prerequisites
-- macOS with Python 3.10+
-- Docker + docker-compose (for local Postgres)
-- Google Cloud SDK or service account JSON if using BigQuery
-- Install Python deps:
-```sh
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+---
+
+## 🎯 Objectives
+
+- Automate the ingestion of large-scale CDC public datasets (100k+ records).  
+- Implement modular, testable data workflows using Python.  
+- Apply validation checks through a RESTful API.  
+- Leverage containerized infrastructure for reproducible local development.  
+- Prepare data for analytical use cases in BigQuery.
+
+---
+
+## 🏗️ Architecture Overview
+
+```text
+           +----------------------+
+           |   CDC Socrata API    |
+           +----------+-----------+
+                      |
+                      v
+           +----------------------+
+           |   Ingestion Script   |   ← pipeline.py
+           +----------+-----------+
+                      |
+                      v
+           +----------------------+
+           |  PostgreSQL Staging  |   ← docker-compose Postgres
+           +----------+-----------+
+                      |
+                      v
+           +----------------------+
+           | Data Cleaning & DQ   |   ← validation_api.py
+           +----------+-----------+
+                      |
+                      v
+           +----------------------+
+           |  BigQuery (Optional) |
+           +----------------------+
+                      |
+                      v
+           +----------------------+
+           |  Alerts / Logging    |
+           +----------------------+
