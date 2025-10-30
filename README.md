@@ -1,19 +1,34 @@
 # 🩺 Public Health Data Pipeline
 
-This project demonstrates the design and development of a **scalable, end-to-end ETL (Extract–Transform–Load) pipeline** for ingesting and processing public health data from the **CDC Socrata API**.  
+An end-to-end **ETL pipeline** that automates the ingestion, validation, and transformation of **CDC public health data** using Python, PostgreSQL, Docker, and Google BigQuery.  
 
-The pipeline ingests raw data, stages it in **PostgreSQL**, performs **data cleaning and validation**, and optionally loads the processed data into **Google BigQuery** for downstream analytics and visualization.  
-It also exposes a **FastAPI-based validation microservice** for automated data-quality checks and supports alerting through email or logging integrations.
+This project demonstrates a **real-world data engineering workflow** — from API ingestion to cloud-ready analytics — and includes a **FastAPI-based validation microservice** for automated data-quality checks and logging.
 
 ---
 
-## 🎯 Objectives
+## 🎯 Project Objectives
 
-- Automate the ingestion of large-scale CDC public datasets (100k+ records).  
-- Implement modular, testable data workflows using Python.  
-- Apply validation checks through a RESTful API.  
-- Leverage containerized infrastructure for reproducible local development.  
-- Prepare data for analytical use cases in BigQuery.
+- Build a scalable and reproducible ETL pipeline for CDC public health datasets (100k+ records).  
+- Implement automated **data cleaning and validation** prior to analysis.  
+- Use **Docker** for consistent local development environments.  
+- Integrate **PostgreSQL → BigQuery** for analytics-ready storage.  
+- Develop a **FastAPI microservice** to automate validation and reporting.  
+- Include **testing, logging, and alerting** for quality assurance.
+
+---
+
+## 🧩 Tech Stack
+
+| Category | Tools / Technologies |
+|-----------|----------------------|
+| Language | Python 3.10+ |
+| Frameworks | FastAPI, Requests, Pandas |
+| Database | PostgreSQL (Dockerized) |
+| Cloud | Google BigQuery |
+| Orchestration | Bash Script + Python Orchestrator |
+| Containerization | Docker, Docker Compose |
+| Testing | Pytest, Unittest |
+| Logging & Alerts | Python Logging, SendGrid (optional) |
 
 ---
 
@@ -42,7 +57,7 @@ It also exposes a **FastAPI-based validation microservice** for automated data-q
                       v
            +----------------------+
            |  BigQuery (Optional) |
-           +----------------------+
+           +----------+-----------+
                       |
                       v
            +----------------------+
