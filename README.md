@@ -28,7 +28,7 @@ This project demonstrates a **real-world data engineering workflow** — from AP
 | Orchestration | Bash Script + Python Orchestrator |
 | Containerization | Docker, Docker Compose |
 | Testing | Pytest, Unittest |
-| Logging & Alerts | Python Logging, SendGrid (optional) |
+| Logging & Alerts | Python Logging, SendGrid |
 
 ---
 
